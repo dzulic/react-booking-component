@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1bfa6d0f-89d3-4a2a-aaa5-8ed35cb64cff" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../facilitymanager/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/../facilitymanager/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../facilitymanager/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../facilitymanager/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../facilitymanager/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../facilitymanager/src/api/Api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../facilitymanager/src/api/Api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../facilitymanager/src/components/views/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/../facilitymanager/src/components/views/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../facilitymanager/src/components/views/auth/UpdateUserModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/../facilitymanager/src/components/views/auth/UpdateUserModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../facilitymanager/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../facilitymanager/src/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../facilitymanager/src/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../facilitymanager/src/redux/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../facilitymanager/src/redux/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../facilitymanager/src/redux/reducers/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../facilitymanager/src/redux/reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../facilitymanager/src/redux/sagas.js" beforeDir="false" afterPath="$PROJECT_DIR$/../facilitymanager/src/redux/sagas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../facilitymanager/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../facilitymanager/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/../facilitymanager/src/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../facilitymanager/src/utils/Utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/../facilitymanager/src/utils/Utils.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Ea9XZfKuV7FwzUoy5h9ozxMsTM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/julijaciric/master/FacilityService/react-booking-component"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+</project>
