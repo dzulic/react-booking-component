@@ -1,6 +1,6 @@
 {
-  "name": "react-booking-component",
-  "version": "0.1.0",
+  "name": "react-booking-facility-component",
+  "version": "0.1.8-SNAPSHOT",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "repository": {

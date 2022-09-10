@@ -1,5 +1,5 @@
 import {call, put} from "redux-saga/effects";
-import {handleApiFetchDELETE, handleApiFetchGET, handleApiFetchPOST} from "../api/Api";
+import {handleApiFetchDELETE, handleApiFetchGET, handleApiFetchPATCH, handleApiFetchPOST} from "../api/Api";
 import {AGENDA_ENTRIES, CURRENT_USER_ENTRIES} from "../utils/Utils";
 import {ActionTypes} from "../actions";
 import moment from "moment";
@@ -91,6 +91,31 @@ export function* removeBooking(action) {
     try {
         yield call(handleApiFetchDELETE, `${REST_ROOT_ENDPOINT}/reservations/${action.property.value}`, accessToken)
         const response = yield call(handleApiFetchGET, `${REST_ROOT_ENDPOINT}/reservations/current`, accessToken)
+
+        if (response.error != null) {
+            throw new Error(response.message);
+        }
+        if (response) {
+            yield put({
+                type: ActionTypes.ADD_EDIT_APP_PROP_STORE, property: {
+                    key: CURRENT_USER_ENTRIES, value: response
+                }
+            });
+        }
+    } catch
+        (e) {
+        console.log(e)
+        yield put({
+            type: ActionTypes.SHOW_ERROR
+        });
+    }
+}
+
+export function* editBooking(action) {
+    const accessToken = yield call(action.property.accessToken)
+    try {
+        yield call(handleApiFetchPATCH, `${REST_ROOT_ENDPOINT}/reservations/${action.property.value}`, accessToken)
+        const response = yield call(handleApiFetchGET, `${REST_ROOT_ENDPOINT}/reservations/`, accessToken)
 
         if (response.error != null) {
             throw new Error(response.message);

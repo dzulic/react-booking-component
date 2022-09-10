@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import React, {Component} from "react";
 import {IconButton, List, ListItem, ListItemAvatar, ListItemText, Typography} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import {connect} from "react-redux";
 import {ALL_ROOMS, CURRENT_USER_ENTRIES, getValueAppPropertyStore} from "../utils/Utils";
 import moment from "moment";
@@ -9,6 +10,11 @@ import {ActionTypes} from "../actions";
 import {withAuth0} from "@auth0/auth0-react";
 
 class BookingsCurrentUserComponent extends Component {
+    componentDidMount() {
+        const {dispatch} = this.props
+        const {getAccessTokenSilently} = this.props.auth0;
+        dispatch({type: ActionTypes.GET_CURRENT_USER_BOOKINGS, property: {accessToken: getAccessTokenSilently}})
+    }
 
     generate = (element) => {
         const {currentUserEntries, availableRooms} = this.props
@@ -23,8 +29,10 @@ class BookingsCurrentUserComponent extends Component {
                                     primary={`Time of your booking: ${moment(value.timeStart).format("HH:mm DD/MM/YYYY")}
                                         At ${room.roomId} with purpose ${value.usePurposeDescription}`}
                     />
-                        <ListItemAvatar>
-                        </ListItemAvatar>
+                        <IconButton edge="end" aria-label="edit" sx={{color: 'white'}} key={value.id}
+                                    onClick={() => this.handleEdit(value)}>
+                            <EditIcon/>
+                        </IconButton>
                         <IconButton edge="end" aria-label="delete" sx={{color: 'white'}} key={value.id}
                                     onClick={() => this.handleDelete(value.id)}>
                             <DeleteIcon/>
@@ -39,6 +47,15 @@ class BookingsCurrentUserComponent extends Component {
             type: ActionTypes.SHOW_DELETE_MODAL,
             property: {
                 value: id
+            }
+        })
+    }
+    handleEdit = (value) => {
+        const {dispatch} = this.props
+        dispatch({
+            type: ActionTypes.SHOW_EDIT_MODAL,
+            property: {
+                value: value
             }
         })
     }

@@ -18,14 +18,14 @@ import ModalDialog from "./base/ModalDialog";
 import AgendaBooking from "./BookRoomAgendaForm";
 import {withAuth0} from "@auth0/auth0-react";
 import {renderTextField} from "./base/MuiTextFieldRendering";
-import '../../App.css';
+import '../App.css';
 
 class BookRoomForm extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
+    componentDidUpdate(prevProps: Readonly, prevState: Readonly) {
         const {dispatch, formValues, selectedDate, roomType} = this.props
         const {getAccessTokenSilently} = this.props.auth0;
         dispatch({
@@ -45,7 +45,6 @@ class BookRoomForm extends Component {
         const {dispatch, availableRooms} = this.props
         if (availableRooms == null) {
             dispatch({type: ActionTypes.GET_ALL_ROOMS, property: {accessToken: getAccessTokenSilently}})
-            dispatch({type: ActionTypes.GET_CURRENT_USER_BOOKINGS, property: {accessToken: getAccessTokenSilently}})
         }
     }
 
@@ -102,7 +101,6 @@ class BookRoomForm extends Component {
                                 fullWidth
                                 type={"number"}
                                 id="computerPlaces"
-                                defaultValue={0}
                                 autoFocus
                             /></Box>
                         <Box sx={{gridArea: 'selectRoom2'}}>
@@ -116,7 +114,6 @@ class BookRoomForm extends Component {
                                 required
                                 fullWidth
                                 id="sittingPlaces"
-                                defaultValue={0}
                                 autoFocus
                             />
                         </Box>

@@ -4,6 +4,7 @@ import AddTimelineItemModalComponent from "../AddBookingModal";
 import {ActionTypes} from "../../actions";
 import ErrorModal from "./ErrorModal";
 import BookingRemovalListingModal from "../BookingRemoveListingModal";
+import BookingEditListingModal from "../BookingEditListingModal";
 
 class ModalDialog extends React.Component {
     constructor(props) {
@@ -28,6 +29,8 @@ class ModalDialog extends React.Component {
                 <ErrorModal closeMethod={this.onClose} property={modalDialog.SHOW_MODAL_PROPERTY}/>)
             || (modalDialog.SHOW_DELETE_MODAL &&
                 <BookingRemovalListingModal closeMethod={this.onClose} property={modalDialog.SHOW_MODAL_PROPERTY}/>)
+            || (modalDialog.SHOW_EDIT_MODAL &&
+                <BookingEditListingModal closeMethod={this.onClose} property={modalDialog.SHOW_MODAL_PROPERTY}/>)
         return (
             <div>
                 {modalDialog.SHOW_MODAL_PROPERTY && content}

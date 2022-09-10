@@ -10,10 +10,10 @@ class BookingRemovalListingModal extends Component {
         super();
     }
 
-    delete = () => {
+    edit = () => {
         const {dispatch, auth0, property, closeMethod} = this.props
         dispatch({
-            type: ActionTypes.REMOVE_BOOKING,
+            type: ActionTypes.EDIT_BOOKING,
             property: {
                 value: property.value,
                 accessToken: auth0.getAccessTokenSilently
@@ -25,15 +25,15 @@ class BookingRemovalListingModal extends Component {
     render() {
         return (<Box>
             <Dialog open={true} onClose={this.props.closeMethod}>
-                <Alert severity="warning">Deleting listing</Alert>
-                <DialogTitle>Are you sure you want to remove listing?</DialogTitle>
+                <Alert severity="info">Editing listing</Alert>
+                <DialogTitle>Are you sure you want to edit listing?</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={this.props.closeMethod}>Cancel</Button>
-                    <Button onClick={this.delete}>Delete</Button>
+                    <Button onClick={this.edit}>Edit</Button>
                 </DialogActions>
             </Dialog>
         </Box>);

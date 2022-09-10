@@ -25,7 +25,7 @@ const renderSelectField = ({
             id="demo-simple-select"
             label="Room Type"
             onChange={custom['other']}
-            input={<Input name="roomType" id="roomType" defaultValue={undefined}/>}
+            input={<Input name="roomType" id="roomType"/>}
         >{itemList}</Select>
     </FormControl>
 )

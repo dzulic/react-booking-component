@@ -15,7 +15,6 @@ class BookingDatePickerComponent extends Component {
     }
 
     handleChange = (date) => {
-        if (date !== undefined) {
             const {dispatch} = this.props
             dispatch({
                 type: ActionTypes.ADD_EDIT_APP_PROPERTY,
@@ -24,7 +23,6 @@ class BookingDatePickerComponent extends Component {
                     value: date.format(DATE_FORMAT)
                 }
             })
-        }
     }
 
     render() {

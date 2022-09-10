@@ -34,8 +34,6 @@ class BookRoomAgendaForm extends Component {
                     }
                 })
         }
-        console.log(allRooms)
-
         if (groups.length === 0 && allRooms != null) {
             return allRooms.map((room) => {
                 return {

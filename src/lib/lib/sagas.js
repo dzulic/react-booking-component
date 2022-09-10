@@ -3,7 +3,7 @@ import {
     getAgendasForTimeAndType,
     getCurrentUserBookings,
     submitScheduleRoom,
-    removeBooking
+    removeBooking, editBooking
 } from "./sagas/sagaCalendar";
 import {takeEvery} from 'redux-saga/effects'
 import {addEditAppPropertySaga, closeModalDialog, showModalDialog} from "./sagas/saga";
@@ -19,5 +19,5 @@ export default function* sagas() {
     yield takeEvery(ActionTypes.GET_CURRENT_USER_BOOKINGS, getCurrentUserBookings);
     yield takeEvery(ActionTypes.GET_ROOMS_AND_AGENDAS, getRoomsAndAgendasForCriteria);
     yield takeEvery(ActionTypes.REMOVE_BOOKING, removeBooking)
-
+    yield takeEvery(ActionTypes.EDIT_BOOKING, editBooking)
 }
