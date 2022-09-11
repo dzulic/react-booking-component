@@ -3,21 +3,43 @@ import moment from 'moment'
 import React, {Component} from "react";
 import Box from "@mui/material/Box";
 import {CustomHeader} from "react-calendar-timeline/lib/lib/headers/CustomHeader";
-import {AGENDA_ENTRIES, ALL_ROOMS, AVAILABLE_ROOMS, getValueAppPropertyStore, ROOM_TYPE} from "../utils/Utils";
+import {
+    AGENDA_ENTRIES,
+    ALL_ROOMS,
+    AVAILABLE_ROOMS,
+    getValueAppPropertyStore,
+    ROOM_TYPE,
+    SELECTED_DATE
+} from "../utils/Utils";
 import {connect} from "react-redux";
 import {reduxForm} from "redux-form";
 import TodayMarker from "react-calendar-timeline/lib/lib/markers/public/TodayMarker";
 import {ActionTypes} from "../actions";
-
-const defaultTime = moment()
-    .startOf("hour")
-const defaultTimeStart = defaultTime
-    .toDate();
-const defaultTimeEnd = defaultTime
-    .add(13, "h")
-    .toDate();
+import {withAuth0} from "@auth0/auth0-react";
 
 class BookRoomAgendaForm extends Component {
+
+    getDefaultTimeStart = () => {
+        const {selectedDate} = this.props
+        if (selectedDate !== undefined && selectedDate !== null) {
+            return moment(selectedDate).toDate()
+        } else
+            return moment()
+                .startOf("day")
+                .toDate();
+    }
+    getDefaultTimeEnd = () => {
+        const {selectedDate} = this.props
+        if (selectedDate !== undefined && selectedDate !== null) {
+            return moment(selectedDate)
+                .add(24, "h")
+                .toDate()
+        } else
+            return moment()
+                .startOf("day")
+                .add(24, "h")
+                .toDate();
+    }
 
     createGroups = () => {
         const {allRooms, availableRooms, roomType} = this.props
@@ -56,7 +78,9 @@ class BookRoomAgendaForm extends Component {
                     group: entry.roomId,
                     title: entry.usePurposeDescription,
                     start_time: moment(entry.timeStart),
-                    end_time: moment(entry.timeEnd).add(2, 'h')
+                    end_time: moment(entry.timeEnd).add(2, 'h'),
+                    agendaEntryId: entry.id,
+                    userId: entry.userId
                 }
             })
         }
@@ -64,30 +88,40 @@ class BookRoomAgendaForm extends Component {
     }
 
     handleItemClick = (itemId, _, time) => {
-        const {dispatch} = this.props
-        dispatch({
-            type: ActionTypes.SHOW_DELETE_MODAL,
-            property: {
-                value: itemId
-            }
-        })  }
+        const {dispatch, auth0} = this.props
+        let item = this.createItems().filter(it => it.id === itemId)[0]
+        if (item.userId === auth0.user.sub) {
+            dispatch({
+                type: ActionTypes.SHOW_DELETE_MODAL,
+                property: {
+                    value: item.agendaEntryId
+                }
+            })
+        } else {
+            dispatch({
+                type: ActionTypes.SHOW_FORBIDDEN_MODAL,
+                property: {}
+            })
+        }
+    }
 
     handleCanvasClick = (groupId, time) => {
         const {dispatch} = this.props
         dispatch({type: ActionTypes.SHOW_MODAL, property: {groupId: groupId, time: moment(time).format()}})
     }
 
+
     render() {
         return (<Box sx={{width: '100%', margin: 'auto'}}>
             <Timeline groups={this.createGroups()}
                       items={this.createItems()}
-                      defaultTimeStart={defaultTimeStart}
-                      defaultTimeEnd={defaultTimeEnd}
+                      visibleTimeStart={this.getDefaultTimeStart()}
+                      visibleTimeEnd={this.getDefaultTimeEnd()}
                       itemHeightRatio={0.75}
-                      onItemClick={this.handleItemClick}
+                      onItemDoubleClick={this.handleItemClick}
                       onCanvasClick={this.handleCanvasClick}
                       rightSidebarWidth={150}
-                      buffer={1.2}>
+                      buffer={1.1}>
                 <TodayMarker/>
                 <TimelineHeaders>
                     <SidebarHeader>
@@ -150,13 +184,12 @@ function mapStateToProps(state) {
         roomType: getValueAppPropertyStore(state, ROOM_TYPE),
         agendaEntries: getValueAppPropertyStore(state, AGENDA_ENTRIES),
         availableRooms: getValueAppPropertyStore(state, AVAILABLE_ROOMS),
-        allRooms: getValueAppPropertyStore(state, ALL_ROOMS)
+        allRooms: getValueAppPropertyStore(state, ALL_ROOMS),
+        selectedDate: getValueAppPropertyStore(state, SELECTED_DATE)
     };
 }
 
-export default connect(mapStateToProps)(reduxForm({
-    form: "app", // TO REMOVE
+export default withAuth0(connect(mapStateToProps)(reduxForm({
+    form: "bookRoomModule",
     destroyOnUnmount: false, enableReinitialize: false,
-})(BookRoomAgendaForm))
-
-
+})(BookRoomAgendaForm)))

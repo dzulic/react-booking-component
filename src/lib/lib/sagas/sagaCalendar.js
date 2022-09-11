@@ -11,9 +11,9 @@ export function* submitScheduleRoom(action) {
     const accessToken = yield call(action.property.accessToken)
     let body = {
         roomId: action.property.roomId,
-        selectedTimeStart: action.property.selectedTimeStart,
-        selectedTimeEnd: action.property.selectedTimeEnd,
-        description: action.property.description
+        timeStart: action.property.timeStart,
+        timeEnd: action.property.selectedTimeEnd,
+        usePurposeDescription: action.property.description
     }
     try {
         const response = yield call(handleApiFetchPOST, REST_ROOT_ENDPOINT + "/reservations", body, accessToken)
@@ -32,11 +32,10 @@ export function* submitScheduleRoom(action) {
 
 export function* getAgendasForTimeAndType(action) {
     const accessToken = yield call(action.property.accessToken)
-    console.log("GET A", action)
     try {
         const response = yield call(
             handleApiFetchGET, `${REST_ROOT_ENDPOINT}/availability?${new URLSearchParams({
-                selectedTimeStart: action.property.selectedDate === null ? (new Date()).toISOString() : action.property.selectedDate,
+                timeStart: action.property.selectedDate === null ? (new Date()).toISOString() : action.property.selectedDate,
                 roomsIds: action.property.roomIds
             })}`, accessToken
         )

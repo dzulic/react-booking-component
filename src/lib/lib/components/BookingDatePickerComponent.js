@@ -15,14 +15,14 @@ class BookingDatePickerComponent extends Component {
     }
 
     handleChange = (date) => {
-            const {dispatch} = this.props
-            dispatch({
-                type: ActionTypes.ADD_EDIT_APP_PROPERTY,
-                property: {
-                    key: SELECTED_DATE,
-                    value: date.format(DATE_FORMAT)
-                }
-            })
+        const {dispatch} = this.props
+        dispatch({
+            type: ActionTypes.ADD_EDIT_APP_PROPERTY,
+            property: {
+                key: SELECTED_DATE,
+                value: date === null ? null : date.format(DATE_FORMAT)
+            }
+        })
     }
 
     render() {
@@ -39,7 +39,6 @@ class BookingDatePickerComponent extends Component {
                             }}
                             minutesStep={15}
                             displayStaticWrapperAs="mobile"
-                            disablePast
                             format="dd / MM / yyyy"
                             inputFormat="DD/MM/yyyy"
                             toolbarTitle='Please select date and time to book a room'

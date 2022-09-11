@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import React, {Component} from "react";
-import {IconButton, List, ListItem, ListItemAvatar, ListItemText, Typography} from "@mui/material";
+import {IconButton, List, ListItem, ListItemText, Typography} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import {connect} from "react-redux";
@@ -19,15 +19,14 @@ class BookingsCurrentUserComponent extends Component {
     generate = (element) => {
         const {currentUserEntries, availableRooms} = this.props
         if (currentUserEntries != null && availableRooms !== null) {
-            console.log(currentUserEntries)
             return currentUserEntries.map((value) => {
                 let room = availableRooms.filter((it) => it.id === value.roomId)[0]
-                return React.cloneElement(element, {
+                return React.createElement(element.type, {
                     key: value.id
                 }, (
                     <><ListItemText sx={{fontSize: '0.1vw'}}
-                                    primary={`Time of your booking: ${moment(value.timeStart).format("HH:mm DD/MM/YYYY")}
-                                        At ${room.roomId} with purpose ${value.usePurposeDescription}`}
+                                    primary={`Time of your booking is:  ${moment(value.timeStart).format("HH:mm DD/MM/YYYY")}  
+                                         At room ${room.roomId} with purpose ${value.usePurposeDescription}`}
                     />
                         <IconButton edge="end" aria-label="edit" sx={{color: 'white'}} key={value.id}
                                     onClick={() => this.handleEdit(value)}>

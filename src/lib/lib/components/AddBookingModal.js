@@ -30,8 +30,8 @@ class AddBookingModal extends Component {
             property: {
                 roomId: property.groupId,
                 description: formValues.description,
-                selectedTimeStart: formatDate(property.time, formValues.selectedTimeStart),
-                selectedTimeEnd: formatDate(property.time, formValues.selectedTimeEnd),
+                selectedTimeStart: formatDate(property.time, formValues.timeStart),
+                selectedTimeEnd: formatDate(property.time, formValues.timeEnd),
                 accessToken: auth0.getAccessTokenSilently
             }
         })
@@ -62,35 +62,39 @@ class AddBookingModal extends Component {
                             Please check start and end time to reserve
                         </DialogContentText>
                         <DialogContentText>
-                            {moment(this.props.property.time).format("DD/MM/YYYY HH:mm")}
+                            {moment(this.props.property.time).format("DD/MM/YYYY")}
                         </DialogContentText>
                         <Box sx={{
+                            paddingTop: '30px',
+                            paddingBottom: '30px',
                             display: 'grid',
                             gridTemplateColumns: 'repeat(2, 1fr)',
                             gap: 2,
                             gridTemplateRows: 'auto',
                             gridTemplateAreas: `"text-field text-field"`
                         }}>
-                            <Typography>Select Time Start</Typography>
+                            <Typography sx={{marginTop:"10px"}}>Select Time Start</Typography>
                             <Field
-                                name="selectedTimeStart"
+                                name="timeStart"
                                 component={renderTextField}
+                                defaultValue={moment(this.props.property.time).format("HH:mm")}
+                                disabled
                                 label="Select Time Start"
                                 autoFocus
                                 margin="dense"
-                                id="selectedTimeStart"
+                                id="timeStart"
                                 type="time"
                                 fullWidth
                                 variant="standard"
                             />
-                            <Typography>Select Time End</Typography>
+                            <Typography sx={{marginTop:"10px"}}>Select Time End</Typography>
                             <Field
-                                name="selectedTimeEnd"
+                                name="timeEnd"
                                 component={renderTextField}
                                 label="Select Time End"
                                 autoFocus
                                 margin="dense"
-                                id="selectedTimeEnd"
+                                id="timeEnd"
                                 type="time"
                                 fullWidth
                                 variant="standard"

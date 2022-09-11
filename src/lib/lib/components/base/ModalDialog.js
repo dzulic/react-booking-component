@@ -5,6 +5,7 @@ import {ActionTypes} from "../../actions";
 import ErrorModal from "./ErrorModal";
 import BookingRemovalListingModal from "../BookingRemoveListingModal";
 import BookingEditListingModal from "../BookingEditListingModal";
+import ForbiddenModal from "./ForbiddenModal";
 
 class ModalDialog extends React.Component {
     constructor(props) {
@@ -31,6 +32,7 @@ class ModalDialog extends React.Component {
                 <BookingRemovalListingModal closeMethod={this.onClose} property={modalDialog.SHOW_MODAL_PROPERTY}/>)
             || (modalDialog.SHOW_EDIT_MODAL &&
                 <BookingEditListingModal closeMethod={this.onClose} property={modalDialog.SHOW_MODAL_PROPERTY}/>)
+            || (modalDialog.SHOW_FORBIDDEN_MODAL && <ForbiddenModal closeMethod={this.onClose}/>)
         return (
             <div>
                 {modalDialog.SHOW_MODAL_PROPERTY && content}

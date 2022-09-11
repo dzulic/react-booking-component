@@ -64,7 +64,6 @@ class BookRoomForm extends Component {
     }
 
     render() {
-        const buttonDisabled = this.props.roomType === undefined || this.props.roomType == null || this.props.selectedDate === null
         return (
             <> <ModalDialog/>
                 <form>
@@ -119,8 +118,7 @@ class BookRoomForm extends Component {
                         </Box>
 
                         <Box sx={{gridArea: 'button'}}>
-                            <Button variant="contained" onClick={this.onSubmit}
-                                    disabled={buttonDisabled}>Filter rooms</Button>
+                            <Button variant="contained" onClick={this.onSubmit}>Filter rooms</Button>
                         </Box>
                         <Box
                             sx={{
