@@ -94,6 +94,7 @@ class BookRoomForm extends Component {
                             <Field
                                 name="computerPlaces"
                                 component={renderTextField}
+                                defaultValue={0}
                                 label="Number of computer places"
                                 variant="outlined"
                                 required
@@ -107,6 +108,7 @@ class BookRoomForm extends Component {
                             <Field
                                 name="sittingPlaces"
                                 component={renderTextField}
+                                defaultValue={0}
                                 label="Number of sitting places"
                                 variant="outlined"
                                 type={"number"}

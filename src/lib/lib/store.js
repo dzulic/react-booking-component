@@ -3,7 +3,7 @@ import {configureStore} from '@reduxjs/toolkit'
 import {AppReducer} from './reducers/reducer'
 import {modalReducer} from './reducers/modalReducer'
 import createSagaMiddleware from 'redux-saga'
-import sagas from './sagas'
+import componentSagas from './componentSagas'
 import {history} from "./utils/history"
 import {reducer as reduxFormReducer} from "redux-form";
 
@@ -21,6 +21,6 @@ const store = configureStore({
     reducer: reducers, middleware: middlewares
 });
 
-sagaMiddleware.run(sagas, history);
+sagaMiddleware.run(componentSagas, history);
 
 export default store;

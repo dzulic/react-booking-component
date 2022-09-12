@@ -30,7 +30,7 @@ class AddBookingModal extends Component {
             property: {
                 roomId: property.groupId,
                 description: formValues.description,
-                selectedTimeStart: formatDate(property.time, formValues.timeStart),
+                selectedTimeStart: formatDate(property.time, moment(property.time).format("HH:mm")),
                 selectedTimeEnd: formatDate(property.time, formValues.timeEnd),
                 accessToken: auth0.getAccessTokenSilently
             }
